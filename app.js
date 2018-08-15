@@ -21,7 +21,6 @@ async function run() {
         ProxySchema.methods.unregister = function() {
             proxy.unregister(url + ".mattcprice.com");
         }
-
         var ProxyObject = mongoose.model('ProxyObject', ProxySchema);
 
         ProxyObject.find(function (err, proxies) {
@@ -34,8 +33,6 @@ async function run() {
         ProxyObject.watch().
             on('change', change => console.log(change));
     });
-
-
 
 };
 
