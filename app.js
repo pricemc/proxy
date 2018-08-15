@@ -15,10 +15,10 @@ async function run() {
             port: String,
             created_at: Date
         });
-        ProxySchema.methods.add = function() {
+        ProxySchema.methods.register = function() {
             proxy.register(this.url + ".mattcprice.com", "http://localhost:" + this.port);
         }
-        ProxySchema.methods.remove = function() {
+        ProxySchema.methods.unregister = function() {
             proxy.unregister(url + ".mattcprice.com");
         }
 
@@ -27,7 +27,7 @@ async function run() {
         ProxyObject.find(function (err, proxies) {
             if (err) return console.error(err);
             array.forEach(async element => {
-                element.add();
+                element.register();
             });
         })
 
