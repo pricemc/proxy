@@ -26,7 +26,7 @@ async function run() {
 
         ProxyObject.find(function (err, proxies) {
             if (err) return console.error(err);
-            array.forEach(async element => {
+            proxies.forEach(async element => {
                 element.register();
             });
         })
