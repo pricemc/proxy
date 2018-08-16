@@ -34,7 +34,7 @@ async function run() {
 
     });
     git.short(function (str) {
-        console.log('short', str);
+        console.log('git rev: %s', str);
         git_rev = str;
     })
 
