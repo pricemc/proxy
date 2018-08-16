@@ -2,8 +2,8 @@ var proxy = require('redbird')({port: 80});
 const mongoose = require('mongoose'); 
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
-
-var git_hash;
+var git = require('git-rev');
+var git_rev;
 
 
 async function run() {
@@ -31,12 +31,12 @@ async function run() {
                 element.register();
             });
         })
-        
+
     });
-    require('child_process').exec('git rev-parse HEAD', function(err, stdout) {
-        git_hash = stdout;
-        console.log('Last commit hash on this branch is:', stdout);
-    });
+    git.short(function (str) {
+        console.log('short', str);
+        git_rev = str;
+    })
 
 };
 
