@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
+var git_hash;
+
 
 async function run() {
     mongoose.connect('mongodb://localhost/proxy');
@@ -29,9 +31,11 @@ async function run() {
                 element.register();
             });
         })
-
-        ProxyObject.watch().
-            on('change', change => console.log(change));
+        
+    });
+    require('child_process').exec('git rev-parse HEAD', function(err, stdout) {
+        git_hash = stdout;
+        console.log('Last commit hash on this branch is:', stdout);
     });
 
 };
